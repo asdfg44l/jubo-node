@@ -9,7 +9,7 @@ const Order = require('../../models/order')
 //Get order
 router.get('/', async (req, res) => {
     try {
-        const { patientId } = req.query
+        const { patientId } = req.body
         const field = '_id message createAt updateAt'
         const orders = await Order.find({ patientId }, field).lean()
 
