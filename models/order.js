@@ -22,10 +22,10 @@ const orderSchema = new Schema({
     }
 })
 
-orderSchema.pre('save', (next) => {
+orderSchema.pre('save', function(next) {
     let now = new Date()
     this.updateAt = now
-    if(this.createAt) {
+    if(!this.createAt) {
         this.createAt = now
     }
     next()
