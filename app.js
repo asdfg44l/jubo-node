@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 require('./config/mongoose')
 
 //Port
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 
 //router
 app.use(routes)
