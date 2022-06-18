@@ -10,7 +10,7 @@ const Order = require('../../models/order')
 router.get('/', async (req, res) => {
     try {
         const { patientId } = req.body
-        const field = '_id message createAt updateAt'
+        const field = 'message createAt updateAt'
         const orders = await Order.find({ patientId }, field).lean()
 
         res.json(orders)
