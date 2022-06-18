@@ -34,4 +34,35 @@ router.post('/', async (req, res) => {
     }
 })
 
+//Edit order
+router.put('/', async (req, res) => {
+    try {
+        const { message, orderId } = req.body
+        const order = await Order.findById(orderId)
+        order.message = message
+        order.save()
+        res.json({
+            status: 'success'
+        })
+    } catch(e) {
+        console.error(e)
+        res.status(500).send('Error!')
+    }
+})
+
+//Delete order
+router.delete('/', async (req, res) => {
+    try {
+        const { orderId } = req.body
+        const order = await Order.findById(orderId)
+        order.remove()
+        res.json({
+            status: 'success'
+        })
+    } catch(e) {
+        console.error(e)
+        res.status(500).send('Error!')
+    }
+})
+
 module.exports = router
