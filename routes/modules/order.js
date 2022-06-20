@@ -9,7 +9,7 @@ const Order = require('../../models/order')
 //Get order
 router.get('/', async (req, res) => {
     try {
-        const { patientId } = req.body
+        const { patientId } = req.query
         const field = 'message createAt updateAt'
         const orders = await Order.find({ patientId }, field).lean()
 
@@ -53,7 +53,7 @@ router.put('/', async (req, res) => {
 //Delete order
 router.delete('/', async (req, res) => {
     try {
-        const { orderId } = req.body
+        const { orderId } = req.query
         const order = await Order.findById(orderId)
         order.remove()
         res.json({
